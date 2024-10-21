@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct DetailCellView: View {
+    var title: String
+    var description: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(alignment: .top) {
+            Text("\(title): ")
+                .font(.headline)
+            Text(description) 
+        }
+        .padding()
+        Divider()
     }
-}
-
-#Preview {
-    DetailCellView()
 }

@@ -8,11 +8,34 @@
 import SwiftUI
 
 struct RatingDetailView: View {
+    var percentage: Double
+    var title: String
+    var progressText: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            CircularRatingView(percentage: percentage, progressText: progressText)
+            Text(title)
+                .bold()
+        }
     }
 }
 
-#Preview {
-    RatingDetailView()
+struct CircularRatingView: View {
+    var percentage: Double
+    var progressText: String
+
+    var body: some View {
+        ZStack {
+            Circle()
+                .stroke(Color.gray.opacity(0.3), lineWidth: 4)
+            Circle()
+                .trim(from: 0, to: CGFloat(percentage / 100))
+                .stroke(Color.yellow, lineWidth: 8)
+                .rotationEffect(.degrees(-90))
+            Text(progressText)
+        }
+        .padding()
+        .frame(width: UIScreen.main.bounds.width/3 - 20)
+    }
 }
